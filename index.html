@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VesteBem - Combinador de Roupas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="iphone-container">
+        <div class="status-bar">
+            <div class="time">20:39</div>
+            <div class="status-icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- Tela Inicial -->
+        <div class="screen" id="home-screen">
+            <div class="app-header">
+                <h1>VesteBem</h1>
+                <p>O seu assistente de moda pessoal</p>
+            </div>
+            
+            <div class="main-menu">
+                <div class="menu-item" onclick="navigateTo('wardrobe-screen')">
+                    <i class="fas fa-tshirt"></i>
+                    <span>Meu Guarda-Roupa</span>
+                </div>
+                <div class="menu-item" onclick="navigateTo('combinations-screen')">
+                    <i class="fas fa-magic"></i>
+                    <span>Combinações</span>
+                </div>
+                <div class="menu-item" onclick="navigateTo('situations-screen')">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Situações</span>
+                </div>
+                <div class="menu-item" onclick="navigateTo('favorites-screen')">
+                    <i class="fas fa-heart"></i>
+                    <span>Favoritos</span>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <button class="action-button" onclick="navigateTo('upload-screen')">
+                    <i class="fas fa-plus"></i> Adicionar Roupa
+                </button>
+                <button class="action-button" onclick="generateRandomCombination()">
+                    <i class="fas fa-random"></i> Combinação Rápida
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Guarda-Roupa -->
+        <div class="screen hidden" id="wardrobe-screen">
+            <div class="screen-header">
+                <button class="back-button" onclick="navigateTo('home-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Meu Guarda-Roupa</h2>
+            </div>
+            
+            <div class="category-tabs">
+                <div class="tab active" data-category="camisas">Camisas</div>
+                <div class="tab" data-category="calcas">Calças</div>
+                <div class="tab" data-category="sapatos">Sapatos</div>
+                <div class="tab" data-category="acessorios">Acessórios</div>
+            </div>
+            
+            <div class="wardrobe-grid" id="wardrobe-items">
+                <!-- Itens serão adicionados dinamicamente via JavaScript -->
+            </div>
+            
+            <div class="add-item-button" onclick="navigateTo('upload-screen')">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+
+        <!-- Tela de Upload de Fotos -->
+        <div class="screen hidden" id="upload-screen">
+            <div class="screen-header">
+                <button class="back-button" onclick="navigateTo('wardrobe-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Adicionar Roupa</h2>
+            </div>
+            
+            <div class="upload-container">
+                <div class="upload-area" id="upload-area">
+                    <i class="fas fa-camera"></i>
+                    <p>Toque para tirar uma foto ou selecionar da galeria</p>
+                    <input type="file" id="photo-upload" accept="image/*" hidden>
+                </div>
+                
+                <div class="item-details hidden" id="item-details">
+                    <div class="preview-container">
+                        <img id="preview-image" src="" alt="Preview">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="item-category">Categoria:</label>
+                        <select id="item-category">
+                            <option value="camisas">Camisa</option>
+                            <option value="calcas">Calça</option>
+                            <option value="sapatos">Sapato</option>
+                            <option value="acessorios">Acessório</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="item-color">Cor Principal:</label>
+                        <select id="item-color">
+                            <option value="preto">Preto</option>
+                            <option value="branco">Branco</option>
+                            <option value="azul">Azul</option>
+                            <option value="vermelho">Vermelho</option>
+                            <option value="verde">Verde</option>
+                            <option value="amarelo">Amarelo</option>
+                            <option value="roxo">Roxo</option>
+                            <option value="rosa">Rosa</option>
+                            <option value="laranja">Laranja</option>
+                            <option value="marrom">Marrom</option>
+                            <option value="cinza">Cinza</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="item-style">Estilo:</label>
+                        <select id="item-style">
+                            <option value="casual">Casual</option>
+                            <option value="formal">Formal</option>
+                            <option value="esportivo">Esportivo</option>
+                            <option value="elegante">Elegante</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="item-season">Estação:</label>
+                        <select id="item-season">
+                            <option value="todas">Todas</option>
+                            <option value="verao">Verão</option>
+                            <option value="inverno">Inverno</option>
+                            <option value="meia-estacao">Meia-estação</option>
+                        </select>
+                    </div>
+                    
+                    <button class="save-button" onclick="saveItem()">Guardar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Combinações -->
+        <div class="screen hidden" id="combinations-screen">
+            <div class="screen-header">
+                <button class="back-button" onclick="navigateTo('home-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Combinações</h2>
+            </div>
+            
+            <div class="combinations-container" id="combinations-container">
+                <!-- Combinações serão adicionadas dinamicamente via JavaScript -->
+            </div>
+            
+            <div class="generate-button" onclick="generateCombinations()">
+                <i class="fas fa-sync-alt"></i> Gerar Novas Combinações
+            </div>
+        </div>
+
+        <!-- Tela de Situações -->
+        <div class="screen hidden" id="situations-screen">
+            <div class="screen-header">
+                <button class="back-button" onclick="navigateTo('home-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Situações</h2>
+            </div>
+            
+            <div class="situations-list">
+                <div class="situation-item" onclick="generateSituationCombination('casual')">
+                    <i class="fas fa-coffee"></i>
+                    <span>Casual</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('trabalho')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Trabalho</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('esporte')">
+                    <i class="fas fa-running"></i>
+                    <span>Desporto</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('festa')">
+                    <i class="fas fa-glass-cheers"></i>
+                    <span>Festa</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('verao')">
+                    <i class="fas fa-sun"></i>
+                    <span>Verão</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('inverno')">
+                    <i class="fas fa-snowflake"></i>
+                    <span>Inverno</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('chuva')">
+                    <i class="fas fa-cloud-rain"></i>
+                    <span>Chuva</span>
+                </div>
+                <div class="situation-item" onclick="generateSituationCombination('encontro')">
+                    <i class="fas fa-heart"></i>
+                    <span>Encontro</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Favoritos -->
+        <div class="screen hidden" id="favorites-screen">
+            <div class="screen-header">
+                <button class="back-button" onclick="navigateTo('home-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Favoritos</h2>
+            </div>
+            
+            <div class="favorites-container" id="favorites-container">
+                <!-- Favoritos serão adicionados dinamicamente via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Barra de Navegação -->
+        <div class="nav-bar">
+            <div class="nav-item" onclick="navigateTo('home-screen')">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('wardrobe-screen')">
+                <i class="fas fa-tshirt"></i>
+                <span>Roupas</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('combinations-screen')">
+                <i class="fas fa-magic"></i>
+                <span>Combinar</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('situations-screen')">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Situações</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/upload.js"></script>
+    <script src="js/combination.js"></script>
+    <script src="js/integration.js"></script>
+    <script src="js/situations.js"></script>
+    <script src="js/tests.js"></script>
+</body>
+</html>

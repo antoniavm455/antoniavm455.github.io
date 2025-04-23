@@ -1,0 +1,186 @@
+/* Estilos adicionais para a funcionalidade de upload */
+.drag-over {
+    border-color: #007aff;
+    background-color: rgba(0, 122, 255, 0.1);
+}
+
+.camera-button {
+    background-color: #34c759;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.camera-button i {
+    font-size: 16px;
+}
+
+.camera-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.camera-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.capture-button {
+    position: absolute;
+    bottom: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.capture-button i {
+    font-size: 30px;
+    color: #333;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background-color: #34c759;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.notification.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.image-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.editor-controls {
+    display: flex;
+    justify-content: space-around;
+}
+
+.editor-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.editor-control i {
+    font-size: 20px;
+    color: #007aff;
+}
+
+.editor-control span {
+    font-size: 12px;
+    color: #666;
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+.color-option.selected {
+    border-color: #007aff;
+    transform: scale(1.1);
+}
+
+/* Cores para o seletor */
+.color-black { background-color: #000; }
+.color-white { background-color: #fff; }
+.color-blue { background-color: #007aff; }
+.color-red { background-color: #ff3b30; }
+.color-green { background-color: #34c759; }
+.color-yellow { background-color: #ffcc00; }
+.color-purple { background-color: #af52de; }
+.color-pink { background-color: #ff2d55; }
+.color-orange { background-color: #ff9500; }
+.color-brown { background-color: #a2845e; }
+.color-gray { background-color: #8e8e93; }
+
+/* Estilos para o carregamento */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 122, 255, 0.2);
+    border-top-color: #007aff;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
